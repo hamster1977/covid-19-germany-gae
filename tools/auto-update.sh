@@ -13,9 +13,13 @@ set -e
 
 BRANCH_NAME="data-update-$(date +"%m-%d")-${RNDSTR}"
 
-
 git branch "${BRANCH_NAME}" || true
 git checkout "${BRANCH_NAME}"
+
+if [[ $GITHUB_ACTIONS == "true" ]]; then
+    git config --global user.email "jgehrcke@googlemail.com"
+    git config --global user.name "Dr. Jan-Philip Gehrcke (automation)"
+fi
 
 make update-csv
 git status --untracked=no --porcelain
