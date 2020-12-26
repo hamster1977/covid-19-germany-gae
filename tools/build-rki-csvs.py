@@ -320,6 +320,7 @@ def fetch_lks():
 
     # Trailing `?`.
     AG_RKI_SUMS_QUERY_BASE_URL = os.environ["AG_RKI_SUMS_QUERY_BASE_URL"]
+    log.info("trailing part of base URL: %s", AG_RKI_SUMS_QUERY_BASE_URL[-10:])
 
     paramdict = {
         "where": "(Meldedatum>timestamp '2020-10-09') AND (Meldedatum<timestamp '2020-10-14')",
