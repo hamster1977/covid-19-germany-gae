@@ -59,8 +59,11 @@ for FPATH in *-rki-*.csv; do
         exit 1
     fi
 
-    cat "${FPATH}.previous" | tail -n5
-    cat "${FPATH}.current" | head -n5
+    cat "${FPATH}.previous" | tail -n2
+    cat "${FPATH}.current" | head -n2
+    cat "${FPATH}.current" | wc -l
+    stat "${FPATH}.current"
+
 
     # Select rows by the sum_ column only, to make this selection consistent
     # across data sets resolved by state/AGS.
