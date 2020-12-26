@@ -12,4 +12,7 @@ jobs:
       - name: pip-install deps
         run: pip install -r tools/env/python-deps.txt
       - name: auto-update.sh
+        env:
+          ZEIT_JSON_URL: ${{ secrets.ZEIT_JSON_URL }}
+          RISKLAYER_HISTORY_CASES_CSV_URL: ${{ secrets.RISKLAYER_HISTORY_CASES_CSV_URL }}
         run: bash tools/auto-update.sh
