@@ -52,6 +52,12 @@ def main():
 
     df_base, df_ext = parse_files_and_check_sanity(args)
 
+    log.info("df_base.index: %s", df_base.index)
+    log.info("df_ext.index: %s", df_ext.index)
+
+    log.info(
+        "build four data frames representing the time window overlap and disparity"
+    )
     # Build four data frames (general case):
     #   only_in_base: not covered by ext
     #   overlap_base: the overlap timeframe, in the base data set
@@ -164,9 +170,11 @@ def parse_files_and_check_sanity(args):
 
     log.info("read: %s", args.path_base)
     df_base = pd.read_csv(args.path_base, index_col=["time_iso8601"])
+    log.info("base shape: %s", df_base.shape)
 
     log.info("read: %s", args.path_extension)
     df_ext = pd.read_csv(args.path_extension, index_col=["time_iso8601"])
+    log.info("ext shape: %s", df_ext.shape)
 
     columns_diff = set(df_base.columns) - set(df_ext.columns)
     if columns_diff:
