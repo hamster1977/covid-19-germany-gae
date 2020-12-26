@@ -1,14 +1,15 @@
+name: Scheduled data update
 on:
   workflow_dispatch:
 
 jobs:
-  printInputs:
+  scheduled-data-update:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
         with:
           python-version: "3.8"
-    run: |
-      pip install -r tools/env/python-deps.txt
-      /bin/bash tools/auto-update.sh
+      - run: |
+        pip install -r tools/env/python-deps.txt
+        /bin/bash tools/auto-update.sh
