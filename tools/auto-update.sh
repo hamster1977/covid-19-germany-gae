@@ -2,7 +2,7 @@
 set -o errexit
 set -o errtrace
 #set -o nounset
-set -o pipefail
+#set -o pipefail
 
 echo "running auto-update.sh in dir: $(pwd)"
 echo
@@ -60,10 +60,11 @@ for FPATH in *-rki-*.csv; do
     fi
 
     cat "${FPATH}.previous" | tail -n2
-    cat "${FPATH}.current" | head -n2
+
     cat "${FPATH}.current" | wc -l
     stat "${FPATH}.current"
-
+    cat "${FPATH}.current" | head -n2
+    cat "${FPATH}.current" | tail -n2
 
     # Select rows by the sum_ column only, to make this selection consistent
     # across data sets resolved by state/AGS.
