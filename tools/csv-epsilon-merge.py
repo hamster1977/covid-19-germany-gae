@@ -78,6 +78,7 @@ def main():
     # `other`.
     log.info("df_overlap_base: %s", df_overlap_base)
     log.info("df_overlap_ext: %s", df_overlap_ext)
+
     df_diff = df_overlap_base.compare(df_overlap_ext)
     log.info("df_diff:\n%s", df_diff)
 
@@ -172,7 +173,7 @@ def parse_files_and_check_sanity(args):
         log.error("these columns do not appear in both: %s", columns_diff)
         sys.exit(1)
 
-    log.info("good: set of columns: equal")
+    log.info("good: set of columns: equal: \n%s", set(df_base.columns))
 
     assert df_base.index.is_monotonic_increasing
     assert df_ext.index.is_monotonic_increasing
