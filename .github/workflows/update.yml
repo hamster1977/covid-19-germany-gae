@@ -10,5 +10,5 @@ jobs:
         with:
           python-version: "3.8"
       - run: |
-        pip install -r tools/env/python-deps.txt
-        /bin/bash tools/auto-update.sh
+          pip install -r tools/env/python-deps.txt
+          /bin/bash tools/auto-update.sh
