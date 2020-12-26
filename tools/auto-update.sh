@@ -8,7 +8,7 @@ echo "running auto-update.sh in dir: $(pwd)"
 echo
 
 set +e
-RNDSTR=$(python -c 'import uuid; uuid.uuid4().hex.upper()[0:6]')
+RNDSTR=$(python -c 'import uuid; print(uuid.uuid4().hex.upper()[0:6])')
 set -e
 
 BRANCH_NAME="data-update-$(date +"%m-%d")-${RNDSTR}"
@@ -58,6 +58,9 @@ for FPATH in *-rki-*.csv; do
         echo "FPATH $FPATH did not match either pattern: check manually"
         exit 1
     fi
+
+    cat "${FPATH}.previous" | tail -n5
+    cat "${FPATH}.current" | head -n5
 
     # Select rows by the sum_ column only, to make this selection consistent
     # across data sets resolved by state/AGS.
